@@ -26,7 +26,7 @@ import tempfile
 import time
 from urllib.error import URLError
 from urllib.parse import urljoin
-from urllib.parse import urlparse, parse_qs 
+from urllib.parse import urlparse, parse_qs
 from utils import dir_exists, get_name_from_url, clone_repo, build_path
 from utils import file_exists, get_video_resolution_format, remove_links
 from utils import get_name_from_url_no_ext, get_node_from_channel, get_level_map
@@ -225,7 +225,7 @@ class Topic(object):
 
 
 class CourseLibreTexts(Topic):
-    title = "Course Shells" # previously "Campus Courses", "Course LibreTexts"
+    title = "Courses" # previously "Campus Courses", "Course LibreTexts"
 
     def units(self):
         for url in self:
