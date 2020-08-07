@@ -39,10 +39,10 @@ sys.setrecursionlimit(1200)
 
 DATA_DIR = "chefdata"
 DATA_DIR_SUBJECT = ""
-COPYRIGHT_HOLDER = "CSU and Merlot"
-LICENSE = get_license(licenses.CC_BY_NC_SA, 
+COPYRIGHT_HOLDER = "LibreTexts, Inc."
+LICENSE = get_license(licenses.CC_BY_NC_SA,
         copyright_holder=COPYRIGHT_HOLDER).as_dict()
-AUTHOR = "CSU and Merlot"
+AUTHOR = "LibreTexts, Inc."
 
 LOGGER = logging.getLogger()
 __logging_handler = logging.StreamHandler()
@@ -170,7 +170,7 @@ class LinkCollection:
         self.collection = []
         for link in self.links:
             self.collection.append(Collection(link.text, link.attrs.get("href", "")))
-        
+
     def to_node(self):
         for collection in self.collection:
             yield collection.to_node()
@@ -284,7 +284,7 @@ class HomeworkExercices(Topic):
 
     def populate_thumbnails(self):
         self.thumbnails_links = thumbnails_links(self.soup, "li", "mt-sortable-listing")
-    
+
     def units(self):
         base_path = [DATA_DIR, DATA_DIR_SUBJECT, self.title]
         for chapter_link in self:
@@ -316,7 +316,7 @@ class VisualizationPhEt(Topic):
 
 class VisualizationsSimulations(VisualizationPhEt):
     title = "Visualizations and Simulations"
-        
+
 
 def thumbnails_links(soup, tag, class_):
     if soup is not None:
@@ -352,7 +352,7 @@ def save_thumbnail(url, title):
 class CourseIndex(object):
     def __init__(self, title, url, visited_urls=None):
         self.source_id = url
-        self.title = title
+        self.title = title.replace(":", "")
         self.lang = "en"
         self.description = None
         self.tree_nodes = OrderedDict()
@@ -421,7 +421,7 @@ class CourseIndex(object):
                  continue
             self.visited_urls.add(course_link_href)
             document = download(course_link_href)
-            chapter_basepath = build_path([index_base_path, course_link.text])
+            chapter_basepath = build_path([index_base_path, course_link.text.replace(":", "_")])
             if document is not None:
                 query = QueryPage(BeautifulSoup(document, 'html.parser'), course_link_href)
                 course_body = query.body()
@@ -476,7 +476,7 @@ class CourseIndex(object):
 class Course(object):
     def __init__(self, title, url, author):
         self.source_id = url
-        self.title = title
+        self.title = title.replace(":", "")
         self.author = author
         self.lang = "en"
         self._thumbnail = None
@@ -512,7 +512,7 @@ class Course(object):
 class AgendaOrFlatPage(object):
     def __init__(self, title, url):
         self.source_id = url
-        self.title = title.replace("/", "_")
+        self.title = title.replace("/", "_").replace(":", "")
         self.soup = self.to_soup()
         self.lang = "en"
         self.filepath = None
@@ -585,7 +585,7 @@ class AgendaOrFlatPage(object):
 
 class Chapter(AgendaOrFlatPage):
     def __init__(self, title, url):
-        self.title = title.replace("/", "_")
+        self.title = title.replace("/", "_").replace(":", "")
         self.source_id = url
         self.soup = self.to_soup()
         self.lang = "en"
@@ -609,7 +609,7 @@ class Chapter(AgendaOrFlatPage):
             return "".join([str(s) for s in scripts])
 
     def mathjax_dependences(self, filepath):
-        mathajax_path = "../MathJax/"
+        mathajax_path = "./MathJax/"
         dependences = [
             "config/TeX-AMS_HTML.js",
             "jax/input/TeX/config.js",
@@ -621,7 +621,7 @@ class Chapter(AgendaOrFlatPage):
             "extensions/MathZoom.js",
             "extensions/TeX/autobold.js",
             "extensions/TeX/mhchem.js",
-            "extensions/TeX/color.js", 
+            "extensions/TeX/color.js",
             "extensions/TeX/boldsymbol.js",
             "extensions/TeX/cancel.js",
             "jax/output/HTML-CSS/jax.js",
@@ -721,7 +721,7 @@ class Chapter(AgendaOrFlatPage):
                 except (requests.exceptions.HTTPError, requests.exceptions.ConnectTimeout,
                         requests.exceptions.ConnectionError, FileNotFoundError, requests.exceptions.ReadTimeout):
                     pass
-        
+
     def build_pdfs_nodes(self, base_path, content):
         pdfs_urls = self.get_pdfs_urls(content)
         base_path = build_path([base_path, 'pdfs'])
@@ -839,23 +839,24 @@ class QueryPage:
         page_global_settings = self.soup.find("script", id="mt-global-settings")
         if page_global_settings:
             self.x_deki_token = json.loads(page_global_settings.text).get("apiToken", None)
+            self.page_id = json.loads(page_global_settings.text).get("pageId", None)
         else:
             self.x_deki_token = None
 
-        query_param = self.soup.find("div", class_="mt-guide-tabs-container")
-        if query_param is not None:
-            self.page_id = query_param.attrs.get("data-page-id", "")
-            query_param = self.soup.find("li", class_="mt-guide-tab")
-            self.guid = query_param.attrs.get("data-guid", "")
-        else:
-            self.page_id = None
-            self.guid = None
+        # query_param = self.soup.find("div", class_="mt-guide-tabs-container")
+        # if query_param is not None:
+        #     self.page_id = query_param.attrs.get("data-page-id", "")
+        #     query_param = self.soup.find("li", class_="mt-guide-tab")
+        #     self.guid = query_param.attrs.get("data-guid", "")
+        # else:
+        #     self.page_id = None
+        #     self.guid = None
 
     def body(self):
-        if self.page_id is not None and self.guid is not None:
-            url = "{}@api/deki/pages/=Template%253AMindTouch%252FIDF3%252FViews%252FTopic_hierarchy/contents?dream.out.format=json&origin=mt-web&pageid={}&draft=false&guid={}".format(BASE_URL, self.page_id, self.guid)
+        if self.page_id is not None:
+            url = "{}@api/deki/pages/=Template%253AMindTouch%252FIDF3%252FViews%252FTopic_hierarchy/contents?dream.out.format=json&origin=mt-web&pageid={}&draft=false".format(BASE_URL, self.page_id)
             try:
-                r = requests.get(url, 
+                r = requests.get(url,
                     headers={'x-deki-token': '{}'.format(self.x_deki_token),
                     'x-deki-client': 'mindtouch-martian',
                     'x-deki-requested-with': 'XMLHttpRequest'})
@@ -869,7 +870,7 @@ class QueryPage:
 
 
 class YouTubeResource(object):
-    def __init__(self, source_id, name=None, type_name="Youtube", lang="en", 
+    def __init__(self, source_id, name=None, type_name="Youtube", lang="en",
             embeded=False, section_title=None, description=None):
         LOGGER.info("     + Resource Type: {}".format(type_name))
         LOGGER.info("     - URL: {}".format(source_id))
@@ -880,7 +881,7 @@ class YouTubeResource(object):
             self.source_id = YouTubeResource.transform_embed(source_id)
         else:
             self.source_id = self.clean_url(source_id)
-        
+
         self.name = name
         self.section_title = self.get_name(section_title)
         self.description = description
@@ -955,6 +956,8 @@ class YouTubeResource(object):
         return subs
 
     def download(self, download=True, base_path=None):
+        if not download:
+            return
         download_to = build_path([base_path])
         for i in range(2):
             try:
@@ -1055,7 +1058,7 @@ class PhetResource(object):
                 path=self.filepath
             )],
             language=self.lang,
-            license= get_license(licenses.CC_BY, 
+            license= get_license(licenses.CC_BY,
                 copyright_holder="PhET Interactive Simulations, University of Colorado Boulder").as_dict()
         )
 
@@ -1186,24 +1189,41 @@ class LibreTextsChef(JsonTreeChef):
         overwrite = options.get('--overwrite', "1")
         run_test = bool(int(options.get('--test', "0")))
 
+        #options for scraping a single LibreText Book/Course into Kolibri
+        course_urls = options.get('--urlFile', None)
+        channel_name = options.get('--channel', None)
+
+        global BASE_URL
+        BASE_URL = SUBJECTS[subject]
+        identifier = channel_name or subject
+        lines = []
+        if course_urls:
+            text_file = open( course_urls, "r")
+            lines = text_file.readlines()
+            text_file.close()
+            BASE_URL = re.search(r"https://.*?\..*?\..*?/", lines[0]).group(0)
+            subject = re.search(r"(?<=https://).*?(?=\.)",lines[0]).group(0)
+            lines = list(map(lambda line: line.replace('\n',''),lines))
+            print (lines)
+
         global DATA_DIR_SUBJECT
         global OVERWRITE
         OVERWRITE = bool(int(overwrite))
         DATA_DIR_SUBJECT = subject
-        self.RICECOOKER_JSON_TREE = LibreTextsChef.SCRAPING_STAGE_OUTPUT_TPL.format(subject=subject)
-        self.scrape_stage = os.path.join(LibreTextsChef.TREES_DATA_DIR, 
-            self.RICECOOKER_JSON_TREE)
+        self.RICECOOKER_JSON_TREE = LibreTextsChef.SCRAPING_STAGE_OUTPUT_TPL.format(subject=identifier)
+        self.scrape_stage = os.path.join(LibreTextsChef.TREES_DATA_DIR, self.RICECOOKER_JSON_TREE)
 
-        LOGGER.info("Scraping {}".format(SUBJECTS[subject]))
+        LOGGER.info("Scraping {}".format(course_urls or BASE_URL))
         if int(download_video) == 0:
             global DOWNLOAD_VIDEOS
             DOWNLOAD_VIDEOS = False
 
+
         global channel_tree
         channel_tree = dict(
-                source_domain=SUBJECTS[subject],
-                source_id=CHANNEL_SOURCE_ID.format(subject=subject),
-                title=CHANNEL_NAMES.get(subject, CHANNEL_NAME.format(subject=subject)),
+                source_domain=BASE_URL,
+                source_id=CHANNEL_SOURCE_ID.format(subject=identifier),
+                title=channel_name or CHANNEL_NAMES.get(subject, CHANNEL_NAME.format(subject=identifier)),
                 description="""Offers a “living library,” curated by students, faculty, and outside experts, of open-source textbooks and curricular materials to support popular secondary and college-level academic subjects, primarily in mathematics and sciences."""[:400],
                 thumbnail=SUBJECTS_THUMBS[subject],
                 author=AUTHOR,
@@ -1212,11 +1232,15 @@ class LibreTextsChef(JsonTreeChef):
                 license=LICENSE,
             )
 
-        global BASE_URL
-        BASE_URL = SUBJECTS[subject]
-
         if run_test is True:
-            return test(channel_tree)
+            channel_tree = test(channel_tree)
+        elif lines:
+            for course_url in lines:
+                course_name = re.search(r"(https?:\/\/.*\/)(.*)",course_url).group(2)
+                base_path = build_path([DATA_DIR, DATA_DIR_SUBJECT, course_name])
+                course_index = CourseIndex(course_name, course_url)
+                course_index.index(base_path)
+                channel_tree["children"].append(course_index.to_node())
         else:
             p_from_i, p_to_i = get_index_range(only_pages)
             v_from_i, v_to_i = get_index_range(only_videos)
@@ -1226,7 +1250,7 @@ class LibreTextsChef(JsonTreeChef):
             for collection_node in collections.to_node():
                 if collection_node is not None:
                     channel_tree["children"].append(collection_node)
-            return channel_tree
+        return channel_tree
 
     def write_tree_to_json(self, channel_tree):
         write_tree_to_json_tree(self.scrape_stage, channel_tree)
@@ -1236,7 +1260,7 @@ def test(channel_tree):
     base_path = build_path([DATA_DIR, DATA_DIR_SUBJECT, "test"])
     #c = CourseIndex("test", "https://chem.libretexts.org/Courses/University_of_California%2C_Irvine/UCI%3A_General_Chemistry_1C_(OpenChem)/015Review_on_Cell_Potential_(OpenChem)/xSolution")
     #c.index(base_path)
-    c = Chapter("test", "https://phys.libretexts.org/Courses/University_of_California_Davis/UCD%3A_Physics_9A%2F%2F9HA_%E2%80%93_Classical_Mechanics/4%3A_Linear_Momentum/4.6%3A_Problem_Solving")
+    c = Chapter("Section 1.1 The Scope of Chemistry", "https://chem.libretexts.org/Sandboxes/hdagnewucdavisedu/Test1/01%3A_The_Chemical_World/1.01%3A_The_Scope_of_Chemistry")
     c.to_file(base_path)
     channel_tree["children"].append(c.to_node())
     return channel_tree

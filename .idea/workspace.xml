@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="d717382b-6d8c-424a-9636-8112fb5200c8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dock/faas-cli.exe" afterDir="false" />
+    <list default="true" id="d717382b-6d8c-424a-9636-8112fb5200c8" name="Default Changelist" comment="Updated sushichef to accept a custom assortment of Books/Courses using a file&#10;&#10;Fixed many errors with how sushichef was handling LibreText's structure&#10;-HTML5 processor could not handle colons in titles&#10;-changed page_id scraping as &quot;mt-guide-tabs-container&quot; is not present on all guides.">
+      <change afterPath="$PROJECT_DIR$/courses.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chefdata/MathJax.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chefdata/phys/Bookshelves/Conceptual Physics/Book Conceptual Physics (Crowell)/Front Matter/TitlePage/TitlePage.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/sushichef.py" beforeDir="false" afterPath="$PROJECT_DIR$/sushichef.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,8 +38,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Libretext" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.ricecooker-temp" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="Docker" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -53,7 +59,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.sushichef">
-    <configuration name="sushichef" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="sushichef test" type="PythonConfigurationType" factoryName="Python">
       <module name="sushi-chef-libretext-master" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -61,7 +67,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="docker://sushi-chef:latest/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.ricecooker-temp" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -96,7 +102,58 @@
       </EXTENSION>
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sushichef.py" />
-      <option name="PARAMETERS" value="--token=&quot;330333347f79d3d41ab9c61f3537f1132e80a452&quot; --subject=chem" />
+      <option name="PARAMETERS" value="--token=&quot;330333347f79d3d41ab9c61f3537f1132e80a452&quot; --test=1 --subject=&quot;chem&quot; --channel=&quot;ident&quot;" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="sushichef" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="sushi-chef-libretext-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="docker://sushi-chef:latest/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="DockerContainerSettingsRunConfigurationExtension">
+        <option name="envVars">
+          <list />
+        </option>
+        <option name="extraHosts">
+          <list />
+        </option>
+        <option name="links">
+          <list />
+        </option>
+        <option name="networkDisabled" value="false" />
+        <option name="networkMode" value="bridge" />
+        <option name="portBindings">
+          <list />
+        </option>
+        <option name="publishAllPorts" value="false" />
+        <option name="runCliOptions" value="--entrypoint= --rm" />
+        <option name="version" value="2" />
+        <option name="volumeBindings">
+          <list>
+            <DockerVolumeBindingImpl>
+              <option name="containerPath" value="/opt/project" />
+              <option name="editable" value="true" />
+              <option name="hostPath" value="$PROJECT_DIR$" />
+              <option name="readOnly" value="false" />
+            </DockerVolumeBindingImpl>
+          </list>
+        </option>
+      </EXTENSION>
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sushichef.py" />
+      <option name="PARAMETERS" value="--token=&quot;330333347f79d3d41ab9c61f3537f1132e80a452&quot; --download-video=0 --channel=IntroChem --urlFile=courses.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -120,15 +177,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.sushichef" />
       <item itemvalue="Docker.sushi-chef" />
+      <item itemvalue="Python.sushichef" />
+      <item itemvalue="Python.sushichef test" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.sushichef" />
-      </list>
-    </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -155,91 +209,123 @@
       <workItem from="1585521385635" duration="2834000" />
       <workItem from="1585541409063" duration="1916000" />
       <workItem from="1586469600445" duration="621000" />
+      <workItem from="1596386930512" duration="1655000" />
+      <workItem from="1596434022845" duration="5062000" />
+      <workItem from="1596743155377" duration="19274000" />
+      <workItem from="1596774486003" duration="12788000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="626" y="193" width="569" height="533" key="#Docker" timestamp="1585262918901">
+    <state x="-1565" y="86" width="1089" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596818247232">
+      <screen x="-1920" y="0" width="1536" height="816" />
+    </state>
+    <state x="-1565" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1536.816/0.0.1707.920@-1920.0.1536.816" timestamp="1596818247232" />
+    <state x="394" y="97" width="1089" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596784821334" />
+    <state x="620" y="262" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596776703770">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state x="626" y="193" width="569" height="533" key="#Docker/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1585262918901" />
-    <state x="574" y="26" key="#Dockerfile" timestamp="1585263062416">
+    <state x="620" y="262" key="#com.intellij.fileTypes.FileTypeChooser/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596776703770" />
+    <state x="873" y="275" key="#xdebugger.evaluate" timestamp="1596326151790">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state x="574" y="26" key="#Dockerfile/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1585263062416" />
-    <state x="583" y="107" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585428450021">
+    <state x="873" y="275" key="#xdebugger.evaluate/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596326151790" />
+    <state x="-1800" y="0" width="1306" height="816" key="CommitChangelistDialog2" timestamp="1596820841467">
+      <screen x="-1920" y="0" width="1536" height="816" />
+    </state>
+    <state x="-1800" y="0" width="1306" height="816" key="CommitChangelistDialog2/-1920.0.1536.816/0.0.1707.920@-1920.0.1536.816" timestamp="1596820841467" />
+    <state x="351" y="29" key="CommitChangelistDialog2/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596784762961" />
+    <state width="1603" height="438" key="DebuggerActiveHint" timestamp="1596761742152">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state x="583" y="107" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1585428450021" />
-    <state x="618" y="115" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1707.920@0.0.1707.920" timestamp="1582343656467" />
-    <state x="611" y="263" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585543123669">
+    <state width="1603" height="438" key="DebuggerActiveHint/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596761742152" />
+    <state x="634" y="215" key="FileChooserDialogImpl" timestamp="1596779401198">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state x="611" y="263" key="#com.intellij.fileTypes.FileTypeChooser/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1585543123669" />
-    <state x="574" y="26" key="#sushi-chef" timestamp="1585268026517">
+    <state x="634" y="215" key="FileChooserDialogImpl/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596779401198" />
+    <state width="1663" height="288" key="GridCell.Tab.-1.bottom" timestamp="1596324418878">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state x="574" y="26" key="#sushi-chef/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1585268026517" />
-    <state x="574" y="75" key="#sushichef" timestamp="1582343681660">
+    <state width="1663" height="288" key="GridCell.Tab.-1.bottom/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596324418878" />
+    <state width="1663" height="288" key="GridCell.Tab.-1.center" timestamp="1596324418878">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state x="574" y="75" key="#sushichef/0.0.1707.920@0.0.1707.920" timestamp="1582343681660" />
-    <state x="928" y="202" key="FileChooserDialogImpl" timestamp="1586469624414">
+    <state width="1663" height="288" key="GridCell.Tab.-1.center/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596324418878" />
+    <state width="1663" height="288" key="GridCell.Tab.-1.left" timestamp="1596324418878">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state x="928" y="202" key="FileChooserDialogImpl/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1586469624414" />
-    <state x="928" y="202" key="FileChooserDialogImpl/0.0.1707.920@0.0.1707.920" timestamp="1583464072434" />
-    <state width="1663" height="300" key="GridCell.Tab.0.bottom" timestamp="1585428695402">
+    <state width="1663" height="288" key="GridCell.Tab.-1.left/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596324418878" />
+    <state width="1663" height="288" key="GridCell.Tab.-1.right" timestamp="1596324418878">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/-1920.0.1536.816/0.0.1707.920@-1920.0.1536.816" timestamp="1584745069180" />
-    <state width="1663" height="300" key="GridCell.Tab.0.bottom/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1585428695402" />
-    <state width="831" height="242" key="GridCell.Tab.0.bottom/0.0.1707.920@0.0.1707.920" timestamp="1583464517556" />
-    <state width="1663" height="300" key="GridCell.Tab.0.center" timestamp="1585428695402">
+    <state width="1663" height="288" key="GridCell.Tab.-1.right/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596324418878" />
+    <state width="1537" height="768" key="GridCell.Tab.0.bottom" timestamp="1596820799862">
+      <screen x="-1920" y="0" width="1536" height="816" />
+    </state>
+    <state width="1537" height="768" key="GridCell.Tab.0.bottom/-1920.0.1536.816/0.0.1707.920@-1920.0.1536.816" timestamp="1596820799862" />
+    <state width="1537" height="768" key="GridCell.Tab.0.bottom/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596816635457" />
+    <state width="1537" height="768" key="GridCell.Tab.0.center" timestamp="1596820799861">
+      <screen x="-1920" y="0" width="1536" height="816" />
+    </state>
+    <state width="1537" height="768" key="GridCell.Tab.0.center/-1920.0.1536.816/0.0.1707.920@-1920.0.1536.816" timestamp="1596820799861" />
+    <state width="1537" height="768" key="GridCell.Tab.0.center/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596816635457" />
+    <state width="1537" height="768" key="GridCell.Tab.0.left" timestamp="1596820799861">
+      <screen x="-1920" y="0" width="1536" height="816" />
+    </state>
+    <state width="1537" height="768" key="GridCell.Tab.0.left/-1920.0.1536.816/0.0.1707.920@-1920.0.1536.816" timestamp="1596820799861" />
+    <state width="1537" height="768" key="GridCell.Tab.0.left/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596816635456" />
+    <state width="1537" height="768" key="GridCell.Tab.0.right" timestamp="1596820799862">
+      <screen x="-1920" y="0" width="1536" height="816" />
+    </state>
+    <state width="1537" height="768" key="GridCell.Tab.0.right/-1920.0.1536.816/0.0.1707.920@-1920.0.1536.816" timestamp="1596820799862" />
+    <state width="1537" height="768" key="GridCell.Tab.0.right/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596816635457" />
+    <state width="1663" height="288" key="GridCell.Tab.1.bottom" timestamp="1596324416027">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/-1920.0.1536.816/0.0.1707.920@-1920.0.1536.816" timestamp="1584745069179" />
-    <state width="1663" height="300" key="GridCell.Tab.0.center/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1585428695402" />
-    <state width="831" height="242" key="GridCell.Tab.0.center/0.0.1707.920@0.0.1707.920" timestamp="1583464517556" />
-    <state width="1663" height="300" key="GridCell.Tab.0.left" timestamp="1585428695402">
+    <state width="1663" height="288" key="GridCell.Tab.1.bottom/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596324416027" />
+    <state width="1663" height="288" key="GridCell.Tab.1.center" timestamp="1596324416027">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/-1920.0.1536.816/0.0.1707.920@-1920.0.1536.816" timestamp="1584745069179" />
-    <state width="1663" height="300" key="GridCell.Tab.0.left/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1585428695402" />
-    <state width="831" height="242" key="GridCell.Tab.0.left/0.0.1707.920@0.0.1707.920" timestamp="1583464517555" />
-    <state width="1663" height="300" key="GridCell.Tab.0.right" timestamp="1585428695402">
+    <state width="1663" height="288" key="GridCell.Tab.1.center/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596324416027" />
+    <state width="1663" height="288" key="GridCell.Tab.1.left" timestamp="1596324416027">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/-1920.0.1536.816/0.0.1707.920@-1920.0.1536.816" timestamp="1584745069179" />
-    <state width="1663" height="300" key="GridCell.Tab.0.right/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1585428695402" />
-    <state width="831" height="242" key="GridCell.Tab.0.right/0.0.1707.920@0.0.1707.920" timestamp="1583464517556" />
-    <state width="1663" height="300" key="GridCell.Tab.1.bottom" timestamp="1585428695403">
+    <state width="1663" height="288" key="GridCell.Tab.1.left/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596324416027" />
+    <state width="1663" height="288" key="GridCell.Tab.1.right" timestamp="1596324416027">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state width="1663" height="300" key="GridCell.Tab.1.bottom/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1585428695403" />
-    <state width="1663" height="300" key="GridCell.Tab.1.center" timestamp="1585428695402">
+    <state width="1663" height="288" key="GridCell.Tab.1.right/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596324416027" />
+    <state x="355" y="105" key="SettingsEditor" timestamp="1596783859365">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state width="1663" height="300" key="GridCell.Tab.1.center/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1585428695402" />
-    <state width="1663" height="300" key="GridCell.Tab.1.left" timestamp="1585428695402">
+    <state x="355" y="105" key="SettingsEditor/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596783859365" />
+    <state width="860" height="467" key="XDebugger.FullValuePopup" timestamp="1596767827930">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state width="1663" height="300" key="GridCell.Tab.1.left/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1585428695402" />
-    <state width="1663" height="300" key="GridCell.Tab.1.right" timestamp="1585428695403">
+    <state width="860" height="467" key="XDebugger.FullValuePopup/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596767827930" />
+    <state x="432" y="197" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1596765908712">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state width="1663" height="300" key="GridCell.Tab.1.right/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1585428695403" />
-    <state x="511" y="92" key="SettingsEditor" timestamp="1585425587309">
-      <screen x="0" y="0" width="1707" height="920" />
-    </state>
-    <state x="-1601" y="91" key="SettingsEditor/-1920.0.1536.816/0.0.1707.920@-1920.0.1536.816" timestamp="1584744255286" />
-    <state x="511" y="92" key="SettingsEditor/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1585425587309" />
-    <state x="355" y="103" key="SettingsEditor/0.0.1707.920@0.0.1707.920" timestamp="1583464223066" />
+    <state x="432" y="197" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/-1920.0.1536.816/0.0.1707.920@0.0.1707.920" timestamp="1596765908712" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sushichef.py</url>
+          <line>560</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/sushi_chef_libretext$sushichef.coverage" NAME="sushichef Coverage Results" MODIFIED="1596818251991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
+    <SUITE FILE_PATH="coverage/sushi_chef_libretext$sushichef_test.coverage" NAME="sushichef test Coverage Results" MODIFIED="1596775606820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.ricecooker-temp" />
     <SUITE FILE_PATH="coverage/sushi_chef_libretext_master$sushichef.coverage" NAME="sushichef Coverage Results" MODIFIED="1585428619110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sushi_chef_libretext$sushichef_whole.coverage" NAME="sushichef whole Coverage Results" MODIFIED="1596765914127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.ricecooker-temp" />
   </component>
 </project>
