@@ -9,7 +9,7 @@ into a format that can be imported into Kolibri Studio.
 
 ## Installation
 
-####Docker (easiest)
+### Docker (easiest)
 * Install Docker
 
 * Build the Dockerfile
@@ -20,7 +20,7 @@ into a format that can be imported into Kolibri Studio.
 
 * Enter your ./sushichef.py commands using the CLI
 
-####Python virtualenv
+### Python virtualenv
 * Install [Python 3](https://www.python.org/downloads/) if you don't have it already.
 
 * Install [pip](https://pypi.python.org/pypi/pip) if you don't have it already.
