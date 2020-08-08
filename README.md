@@ -9,6 +9,18 @@ into a format that can be imported into Kolibri Studio.
 
 ## Installation
 
+### Docker (easiest)
+* Install Docker
+
+* Build the Dockerfile
+
+* Create and run a container of this Docker image
+
+* Open the CLI for the container
+
+* Enter your ./sushichef.py commands using the CLI
+
+### Python virtualenv
 * Install [Python 3](https://www.python.org/downloads/) if you don't have it already.
 
 * Install [pip](https://pypi.python.org/pypi/pip) if you don't have it already.
@@ -33,12 +45,13 @@ into a format that can be imported into Kolibri Studio.
 
 
 ## Usage
-
-     ./sushichef.py -v --reset --token=".token" --subject=chem
-     ./sushichef.py -v --reset --token=".token" --subject=math
-     ./sushichef.py -v --reset --token=".token" --subject=phys
-     ./sushichef.py -v --reset --token=".token" --subject=eng
-     ./sushichef.py -v --reset --token=".token" --subject=bio
+```Shell
+     ./sushichef.py -v --token=".token" --subject=chem
+     ./sushichef.py -v --token=".token" --subject=math
      
+     #upload a custom list of LibreTexts books to a channel
+     ./sushichef.py --token=".token" --channel=IntroChem --urlFile=courses.txt
+```
 ## MathJax
-MathJax files must be in a upper level folder i.e ../ or will raise an error. 
+MathJax files must be in a upper level folder i.e ../ or will raise an error.
+An old version of MathJax v2 is already included, but you may want to update this
